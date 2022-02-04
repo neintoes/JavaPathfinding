@@ -9,9 +9,12 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 
+import static com.example.pathfindingstuff.HelloApplication.nodeMap;
+
 public class Node extends Rectangle {
     public double xCoord;
     public double yCoord;
+    public NodeMap parent;
 
 //gCost being distance from starting node
     private int gCost;
@@ -78,6 +81,8 @@ public class Node extends Rectangle {
         setIsTraversable(inputBool);
         if (!isTraversable){
             this.setFill(Color.BLACK);
+        } else {
+            this.setFill(Color.WHITE);
         }
     }
 //isStartNode
@@ -85,14 +90,22 @@ public class Node extends Rectangle {
         return isStartNode;
     }
     public void setIsStartNode(boolean input){
-        isStartNode = input;
+        if(input){
+            isStartNode = input;
+            nodeMap.startNodePos= new int[]{(int)xCoord,(int)yCoord};
+            this.setFill(Color.GRAY);
+        }
     }
 //isEndNode
     public boolean getIsEndNode(){
         return isEndNode;
     }
     public void setIsEndNode(boolean input){
-        isEndNode = input;
+        if(input){
+            isEndNode = input;
+            nodeMap.endNodePos = new int[]{(int) xCoord, (int)yCoord};
+            this.setFill(Color.GREEN);
+        }
     }
 //alreadyScanned
     public boolean getAlreadyScanned(){
@@ -115,7 +128,17 @@ public class Node extends Rectangle {
         this.setOnMousePressed(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                setTraversable(false);
+                if(nodeMap.startSelection){
+                    setIsStartNode(true);
+                    nodeMap.startSelection = false;
+                    nodeMap.endSelection = true;
+                } else if (nodeMap.endSelection){
+                    setIsEndNode(true);
+                    nodeMap.endSelection =false;
+                    nodeMap.obstacleSelection = true;
+                }else if(nodeMap.obstacleSelection){
+                    setTraversable(!isTraversable);
+                }
             }
         });
     }

@@ -19,6 +19,12 @@ public class NodeMap {
     private double rectWidth;
     private double rectHeight;
     public static Node[][] map;
+    public boolean startSelection = true;
+    public boolean endSelection = false;
+    public boolean obstacleSelection = false;
+
+    public int[] startNodePos;
+    public int[] endNodePos;
 
     //bool to detect when the mouse button is pressed down.
     private boolean mousePress;
@@ -96,6 +102,7 @@ public class NodeMap {
         }
     }
 
+    //unused method sets random start node
     public int[] setStartNode(){
         int randX = (int)Math.floor(Math.random()*mapWidth);
         int randY = (int)Math.floor(Math.random()*mapHeight);
@@ -104,6 +111,7 @@ public class NodeMap {
         return new int[]{randX, randY};
     }
 
+    //unused method sets random end node
     public int[] setEndNode(){
         int randX = (int)Math.floor(Math.random()*mapWidth);
         int randY = (int)Math.floor(Math.random()*mapHeight);

@@ -1,6 +1,7 @@
 package com.example.pathfindingstuff;
 
 import javafx.application.Application;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -57,6 +58,16 @@ public class HelloApplication extends Application {
     public void startApp(int width, int height, Stage stage){
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
         nodeMap = new NodeMap();
+        Button startButton = new Button("Start Pathfinding.");
+        startButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                if(!nodeMap.startSelection && !nodeMap.endSelection) {
+                    pathfinder.generatePath(nodeMap.startNodePos, nodeMap.endNodePos);
+                }
+            }
+        });
+
 
         pane = new Pane();
         Scene scene = new Scene(pane, 1024, 800, true);
@@ -64,17 +75,13 @@ public class HelloApplication extends Application {
         nodeMap.inputNodeMapVals(width,height,scene);
         //Draws the nodemap from the values held in the nodemap class
         nodeMap.generateNodeMap(pane);
-        //Randomly selects the beginning node from the nodeMap array of arrays.
-        selectStartNode(scene);
+        pane.getChildren().add(startButton);
+
+
         stage.setTitle("Pathfinding");
 
         stage.setScene(scene);
         stage.show();
     }
 
-    public void selectStartNode(Scene scene){
-        Text text = new Text(pane.getWidth()/2, pane.getHeight()/2 ,"Click a node to select the start point");
-        pane.getChildren().add(text);
-
-    }
 }
