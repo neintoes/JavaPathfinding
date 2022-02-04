@@ -49,7 +49,7 @@ public class PathFinding {
     private int[] mod8 = new int[]{1,1};
     private int[][]modifiers = new int[][]{mod1,mod2,mod3,mod4,mod5,mod6,mod7,mod8};
 
-//scanning the node is calculating it's values, tapping th enode is turning it red. Will not scan nodes that are not traversable.
+//scanning the node is calculating its values, tapping the node is turning it red. Will not scan nodes that are not traversable.
 //WIll return and set bool if reached the target.
     public void tapNode(Node thisNode){
 

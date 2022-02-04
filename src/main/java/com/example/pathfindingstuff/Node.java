@@ -119,4 +119,6 @@ public class Node extends Rectangle {
             }
         });
     }
+    //while startphase: mouselisteners will listen to set the start and end nodes
+    //else will set traversable and nodemap will display a start button
 }

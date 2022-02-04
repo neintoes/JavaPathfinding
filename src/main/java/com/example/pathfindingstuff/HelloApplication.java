@@ -65,7 +65,7 @@ public class HelloApplication extends Application {
         //Draws the nodemap from the values held in the nodemap class
         nodeMap.generateNodeMap(pane);
         //Randomly selects the beginning node from the nodeMap array of arrays.
-
+        selectStartNode(scene);
         stage.setTitle("Pathfinding");
 
         stage.setScene(scene);
