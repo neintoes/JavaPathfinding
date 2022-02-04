@@ -63,6 +63,7 @@ public class HelloApplication extends Application {
             @Override
             public void handle(MouseEvent mouseEvent) {
                 if(!nodeMap.startSelection && !nodeMap.endSelection) {
+                    nodeMap.obstacleSelection = false;
                     pathfinder.generatePath(nodeMap.startNodePos, nodeMap.endNodePos);
                 }
             }

@@ -92,7 +92,7 @@ public class Node extends Rectangle {
     public void setIsStartNode(boolean input){
         if(input){
             isStartNode = input;
-            nodeMap.startNodePos= new int[]{(int)xCoord,(int)yCoord};
+            nodeMap.startNodePos= new int[]{nodeIndex[0],nodeIndex[1]};
             this.setFill(Color.GRAY);
         }
     }
@@ -103,7 +103,7 @@ public class Node extends Rectangle {
     public void setIsEndNode(boolean input){
         if(input){
             isEndNode = input;
-            nodeMap.endNodePos = new int[]{(int) xCoord, (int)yCoord};
+            nodeMap.endNodePos = new int[]{nodeIndex[0], nodeIndex[1]};
             this.setFill(Color.GREEN);
         }
     }
